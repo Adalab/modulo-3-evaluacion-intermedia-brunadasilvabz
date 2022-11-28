@@ -1,5 +1,41 @@
 @import 'core/reset.scss';
 
 .table{
-  background-color: rgb(141, 141, 237);
+  background-color: rgb(236, 206, 211);
+  margin-bottom: 30px;
+
+  &__row {
+    height: 35px;
+    width: 60px;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  background-color: pink;
+  width: 500px;
+  gap: 10px;
+  padding-left: 20px;
+
+  &__div {
+    &--label {
+      margin-right: 20px;
+    }
+    &--input {
+      border-radius: 5px;
+      border-style: none;
+      height: 20px;
+    }
+  }
+
+  &__btn {
+    width: 200px;
+    height: 30px;
+    border-radius: 5px;
+    border-style: dashed;
+    background-color: rgb(141, 232, 232);
+    color: white;
+  }
+ 
 }

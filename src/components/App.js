@@ -47,35 +47,57 @@ function App() {
       <h1>Adalabers</h1>
       <table border="1" className="table">
         <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Tutora</th>
-            <th>Especialidad</th>
+          <tr className="table__row">
+            <th className="table_column">Nombre</th>
+            <th className="table_column">Tutora</th>
+            <th className="table_column">Especialidad</th>
           </tr>
         </thead>
 
         <tbody>{renderAllAdalabers()}</tbody>
       </table>
 
-      <form onSubmit={handleSubmit}>
-        <h2>Añadir una Adalaber</h2>
-        <label htmlFor="name">Nombre:</label>
-        <input type="text" name="name" id="name" onInput={handleNewAdalaber} />
-        <label htmlFor="counselor">Tutora:</label>
-        <input
-          type="text"
-          name="counselor"
-          id="counselor"
-          onInput={handleNewAdalaber}
-        />
-        <label htmlFor="speciality">Especialidad:</label>
-        <input
-          type="text"
-          name="speciality"
-          id="speciality"
-          onInput={handleNewAdalaber}
-        />
-        <button onClick={handleClick}>Añadir una nueva Adalaber</button>
+      <form className="form" onSubmit={handleSubmit}>
+        <h2 className="form__title">Añadir una Adalaber</h2>
+        <div className="form__div">
+          <label className="form__div--label" htmlFor="name">
+            Nombre:
+          </label>
+          <input
+            className="form__div--input"
+            type="text"
+            name="name"
+            id="name"
+            onInput={handleNewAdalaber}
+          />
+        </div>
+        <div>
+          <label className="form__div--label" htmlFor="counselor">
+            Tutora:
+          </label>
+          <input
+            className="form__div--input"
+            type="text"
+            name="counselor"
+            id="counselor"
+            onInput={handleNewAdalaber}
+          />
+        </div>
+        <div>
+          <label className="form__div--label" htmlFor="speciality">
+            Especialidad:
+          </label>
+          <input
+            className="form__div--input"
+            type="text"
+            name="speciality"
+            id="speciality"
+            onInput={handleNewAdalaber}
+          />
+        </div>
+        <button className="form__btn" onClick={handleClick}>
+          Añadir una nueva Adalaber
+        </button>
       </form>
     </div>
   );
