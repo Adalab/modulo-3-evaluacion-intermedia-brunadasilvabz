@@ -4,7 +4,43 @@ import { useState } from "react";
 
 function App() {
   console.log(adalabers);
-  const [data, setData] = useState(adalabers);
+  const [data, setData] = useState(adalabers.results);
+  const [newAdalaber, setNewAdalaber] = useState({
+    id: "",
+    name: "",
+    counselor: "",
+    speciality: "",
+  });
+
+  const renderAllAdalabers = () => {
+    // por cada adalaber crea un tr con sus datos
+    return data.map((adalaber) => {
+      return (
+        <tr key={adalaber.id}>
+          <td>{adalaber.name}</td>
+          <td>{adalaber.counselor}</td>
+          <td>{adalaber.speciality}</td>
+        </tr>
+      );
+    });
+  };
+
+  const handleNewAdalaber = (ev) => {
+    //para que se añadan los datos
+    setNewAdalaber({ ...newAdalaber, [ev.target.id]: ev.target.value });
+  };
+
+  const handleClick = (ev) => {
+    ev.preventDefault();
+    data.push(newAdalaber);
+    setData([...data]);
+    console.log(newAdalaber);
+    // añade nueva adalaber a la tabla pintada
+  };
+
+  const handleSubmit = (ev) => {
+    ev.preventDefault();
+  };
 
   return (
     <div className="App">
@@ -18,26 +54,29 @@ function App() {
           </tr>
         </thead>
 
-        <tbody>
-          <tr>
-            <td>MariCarmen</td>
-            <td>Yanelis</td>
-            <td>Python</td>
-          </tr>
-
-          <tr>
-            <td>Amparo</td>
-            <td>Dayana</td>
-            <td>IA</td>
-          </tr>
-
-          <tr>
-            <td>Escandia</td>
-            <td>Iván</td>
-            <td>3D graphics</td>
-          </tr>
-        </tbody>
+        <tbody>{renderAllAdalabers()}</tbody>
       </table>
+
+      <form onSubmit={handleSubmit}>
+        <h2>Añadir una Adalaber</h2>
+        <label htmlFor="name">Nombre:</label>
+        <input type="text" name="name" id="name" onInput={handleNewAdalaber} />
+        <label htmlFor="counselor">Tutora:</label>
+        <input
+          type="text"
+          name="counselor"
+          id="counselor"
+          onInput={handleNewAdalaber}
+        />
+        <label htmlFor="speciality">Especialidad:</label>
+        <input
+          type="text"
+          name="speciality"
+          id="speciality"
+          onInput={handleNewAdalaber}
+        />
+        <button onClick={handleClick}>Añadir una nueva Adalaber</button>
+      </form>
     </div>
   );
 }
