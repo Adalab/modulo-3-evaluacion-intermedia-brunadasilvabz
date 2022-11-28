@@ -1,1 +1,0 @@
-{"version":3,"file":"static/css/main.8920ca29.css","mappings":"AAAA,MACI,qBAAsB,CCA1B,aAEI,wBAAyB","sources":["styles/core/reset.scss","styles/App.scss"],"sourcesContent":[":root {\n    box-sizing: border-box;\n}","@import 'core/reset.scss';\n.form{\n  .input {\n    background-color: #61dafb;\n  }\n}"],"names":[],"sourceRoot":""}
