@@ -1,10 +1,12 @@
 import "../styles/App.scss";
-import adalabers from "../data/adalabers.json";
+import getAdalabersData from "../services/api";
+// import adalabers from "../data/adalabers.json";
 import { useState } from "react";
+import { useEffect } from "react";
 
 function App() {
   //-------------VARIABLES ESTADO-----------------
-  const [data, setData] = useState(adalabers.results);
+  const [data, setData] = useState([]);
   const [newAdalaber, setNewAdalaber] = useState({
     id: crypto.randomUUID(),
     name: "",
@@ -17,13 +19,27 @@ function App() {
   const [counselorFilter, setCounselorFilter] = useState("");
   const [search, setSearch] = useState("");
 
+  //-------------USE EFFECT-----------------
+
+  useEffect(() => {
+    getAdalabersData().then((data) => {
+      // console.log(data);
+      setData(data.results);
+    });
+  });
+  // useEffect(() => {
+  //   getAdalabersData().then((data) => {
+  //     setData(data.results);
+  //   });
+  // }, []);
+
   //-------------FUNCIONES RENDER-----------------
 
   const renderAllAdalabers = () => {
     return data
-      .filter((adalaber) => adalaber.name.includes(search))
-      .filter((adalaber) =>
-        adalaber.counselor.toLowerCase().includes(counselorFilter)
+      .filter((eachAdaName) => eachAdaName.name.includes(search))
+      .filter((eachAdaCounselor) =>
+        eachAdaCounselor.counselor.toLowerCase().includes(counselorFilter)
       )
       .map((adalaber) => {
         // por cada adalaber crea un tr con sus datos
@@ -98,7 +114,7 @@ function App() {
         <h1>Adalabers</h1>
       </header>
       <main>
-        <form>
+        <form onSubmit={handleSubmit}>
           <label htmlFor="nameSearch">Escribe el nombre de la Adalaber</label>
           <input
             type="text"
